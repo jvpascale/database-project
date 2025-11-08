@@ -1,24 +1,27 @@
 package Services;
 
-import Entities.Departament;
+
 import Entities.Employee;
+import EntitiesDTOs.DepartamentDTO;
+import Repositories.DepartamentRepository;
 
 import java.util.Date;
 import java.util.List;
 
 public class DepartamentService {
 
-    private Departament getDepartamentByEmployeeQuantity(Integer employeesQuantity){
+    DepartamentRepository departamentRepository = new DepartamentRepository();
 
+    private DepartamentDTO getDepartamentByEmployeeQuantity(Integer minEmployeesQuantity, Integer maxEmployeesQuantity){
+        return departamentRepository.getDepartamentByEmployeeQuantity(minEmployeesQuantity, maxEmployeesQuantity);
     }
 
-    private Departament getDepartamentByOrderLocalization(String localization, Integer code){
-
-    }
-//    Filtro de unidade por fluxo de pedidos em determinado período de datas
-    private Departament getDepartamentByOrderDataAndId(List<Integer> ordersIds, Date fromTime, Date toTime){
-
+    private List<DepartamentDTO> getDepartamentByOrderLocalization(Integer code){
+        departamentRepository.getDepartamentByOrderLocalization(code);
     }
 
-
+    //Filtro de unidade por fluxo de pedidos em determinado período de datas
+    private DepartamentDTO getDepartamentByOrderDataAndId(Integer minOrders, Integer maxOrders, Date fromTime, Date toTime){
+        return departamentRepository.getDepartamentByOrderDataAndId(minOrders, maxOrders, fromTime, toTime);
+    }
 }

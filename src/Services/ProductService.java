@@ -2,20 +2,24 @@ package Services;
 
 import Entities.Product;
 import Entities.User;
+import Repositories.ProductRepository;
 
+import java.util.Date;
 import java.util.List;
 
 public class ProductService {
-    private List<Product> getProductsBySaleQuantity(Integer saleQuantity){
-//        Aqui precisa consultar em todos os pedidos os que possuem esse produto, salvar e incrementar esse valor se for maior que saleQuantity retorna aqui...
 
+    ProductRepository productRepository = new ProductRepository();
+
+    private List<Product> getProductsBySaleQuantity(Integer minSaleQuantity, Integer maxSaleQuantity, Date fromTime, Date toTime){
+        productRepository.getProductsBySaleQuantity(minSaleQuantity, maxSaleQuantity, fromTime, toTime);
     }
 
-    private List<Product> getProductsByPrice(Float price){
-
+    private List<Product> getProductsByPrice(Float minPrice, Float maxPrice){
+        productRepository.getProductsByPrice(minPrice, maxPrice);
     }
 
     private List<Product> getProductsBySellerUser(User user){
-
+        productRepository.getProductsBySellerUser(user);
     }
 }
